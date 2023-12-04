@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C; /* bg-rose-700 tailwind css */
+    --colore-testo: white;
+    --colore-hover-testo: black;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    nav {
+        min-width: 100%;
+        position: absolute;
+    }
+
+    nav .formarticoloblog, .formprogettoportfolio {
+        display: none;
+    }
+
+    nav .hidden a {
+        color: var(--colore-testo);
+        text-transform: uppercase;
+        text-align: center;
+        border-right: 2px solid var(--colore-testo);
+        min-width: 14vw;
+        letter-spacing: 2px;
+        border-radius: 0px;
+        transition: background-color 0.4s ease-in-out;
+    }
+
+    nav .hidden a:hover {
+        background-color: var(--colore-testo);
+        color: var(--colore-hover-testo);
+    }
+
+    nav .hidden a:focus {
+        background-color: var(--colore-testo);
+        color: var(--colore-hover-testo);
+    }
+
+    nav button {
+        display: none;
+    }
+
+    nav #mobileMenuBtn {
+        background-color: lightblue;
+        display: none;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px) {
+    nav {
+        position: absolute;
+        /*background-color: var(--colore-primario);*/
+    }
+
+    nav .hidden a {
+        display: none;
+    }
+
+    nav .formarticoloblog, .formprogettoportfolio {
+        display: none;
+    }
+
+    nav button {
+        display: none;
+    }
+
+    nav #mobileMenuBtn {
+        background-color: lightblue;
+        display: none;
+    }
+}

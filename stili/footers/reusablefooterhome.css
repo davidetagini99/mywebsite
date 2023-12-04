@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C;
+    --colore-testo: white;
+    --colore-hover-testo: black;
+}
+
+.footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--colore-primario);
+    padding: 30px;
+}
+
+.footer p {
+    color: var(--colore-testo);
+    text-align: center;
+}

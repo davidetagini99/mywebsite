@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C;
+    --colore-testo: white;
+    --colore-hover-testo: black;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    nav {
+        background-color: var(--colore-primario);
+    }
+
+    nav .hidden a {
+        display: none;
+    }
+    
+    nav .formarticoloblog {
+        display: none;
+    }
+    
+    nav .formprogettoportfolio {
+        display: flex;
+        justify-content: end;
+        padding-right: 20px;
+        gap: 20px;
+    }
+
+    nav .formprogettoportfolio input[type="search"] {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 9px;
+        text-align: start;
+        min-width: 22vw;
+    }
+    
+    nav label {
+        display: none;
+    } /* da fixare, spostare il blocco dell'input search al centro della nav del portfolio */
+
+    nav button {
+        display: none;
+    }
+
+    nav #mobileMenuBtnHome {
+        display: none;
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px) {
+    nav {
+        background-color: var(--colore-primario);
+    }
+
+    nav button {
+        display: none;
+    }
+
+    nav #mobile-menu a {
+        display: none;
+    }
+
+    nav #mobile-menu .formarticoloblog {
+        display: none;
+    }
+
+    nav #mobile-menu label {
+        display: none;
+    }
+
+    nav #mobile-menu .formprogettoportfolio input[type="search"] {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: start;
+    }
+
+    nav #mobileMenuBtnHome {
+        display: none;
+    }
+
+    /* far visualizzare la barra di ricerca al centro, cercare anche di ridimensionarla */
+}

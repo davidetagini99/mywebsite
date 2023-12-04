@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C;
+    --colore-testo: white;
+    --colore-testo-hover: black;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    .hero-image {
+        background-color: var(--colore-primario);
+        min-height: 100vh;
+    }
+    
+    .hero-text {
+        position: absolute;
+        color: var(--colore-testo);
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        letter-spacing: 4px;
+    }
+    
+    .hero-ctas {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 10px 20px;
+        padding-top: 25px;
+    }
+    
+    .hero-ctas a {
+        background-color: var(--colore-testo);
+        min-width: 20vw;
+        padding: 10px 30px;
+        text-align: center;
+        color: var(--colore-testo-hover);
+        text-transform: uppercase;
+        transition: background-color 0.5s ease-in-out;
+        border-radius: 2em;
+    }
+    
+    .hero-ctas a:hover {
+        background-color: var(--colore-testo);
+        color: var(--colore-testo-hover);
+    }
+    
+    .hero-ctas a:focus {
+        background-color: var(--colore-testo);
+        color: var(--colore-testo-hover);
+    }
+
+    .hero-ctas button {
+        background-color: var(--colore-testo);
+        min-width: 20vw;
+        text-align: center;
+        color: var(--colore-testo-hover);
+        text-transform: uppercase;
+        transition: background-color 0.5s ease-in-out;
+        border-radius: 2em;
+        font-size: 22px;
+        letter-spacing: 2px;
+    }
+    
+    .hero-ctas button:hover {
+        background-color: var(--colore-testo);
+        color: var(--colore-testo-hover);
+    }
+    
+    .hero-ctas button:focus {
+        background-color: var(--colore-testo);
+        color: var(--colore-testo-hover);
+    }
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+    
+        50% {
+            background-position: 100% 50%;
+        }
+    
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+
+@media screen and (orientation: portrait)  and (max-width: 800px) {
+    .hero-image {
+        background-color: var(--colore-primario);
+        min-height: 100vh;
+    }
+    
+    .hero-text {
+        position: absolute;
+        color: white;
+        text-align: center;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+    
+    .hero-ctas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        padding-top: 35px;
+        flex-direction: column;
+        min-width: 50vw;
+    }
+    
+    .hero-ctas a {
+        background-color: var(--colore-testo);
+        padding: 10px 30px;
+        text-align: center;
+        color: var(--colore-testo-hover);
+        text-transform: uppercase;
+        transition: background-color 0.5s ease-in-out;
+        border-radius: 2em;
+        min-width: 70vw;
+    }
+    
+    .hero-ctas a:hover {
+        background-color: white;
+        color: black;
+    }
+    
+    .hero-ctas a:focus {
+        background-color: white;
+        color: black;
+    }
+
+    .hero-ctas button {
+        background-color: var(--colore-testo);
+        color: var(--colore-testo-hover);
+        border-radius: 2em;
+        min-width: 70vw;
+        text-transform: uppercase;
+        padding: 10px;
+        letter-spacing: 2px;
+    }
+    
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+    
+        50% {
+            background-position: 100% 50%;
+        }
+    
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+}
+
+/* come imposto lo screen orientation in orizzontale ma esclusivo al mobile? */

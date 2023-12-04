@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --colore-primario: #BE123C;
+    --colore-testo: white;
+    --colore-hover-testo: black;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    nav #dropDownMenuList {
+        background-color: lightblue;
+    }
+}

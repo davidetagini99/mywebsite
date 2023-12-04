@@ -1,0 +1,26 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C; /* bg-rose-700 tailwind css */
+    --colore-testo: white;
+    --colore-hover-testo: black;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    nav {
+        background-color: var(--colore-primario);
+    }
+
+    nav .formarticoloblog, .formprogettoportfolio {
+        display: none;
+    }
+
+    nav .hidden a {
+        display: none;
+    }
+}

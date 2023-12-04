@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+:root {
+    --colore-primario: #BE123C;
+    --colore-testo: white;
+    --colore-hover-testo: black;
+    --colore-testo-errore: red;
+}
+
+@media screen and (orientation: landscape) and (min-width: 400px) {
+    .infoprogettobody {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        padding: 20px;
+    }
+
+    main .descprogettocontainer .testotitoloprogetto {
+        color: var(--colore-hover-testo);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    main .testoinfoprogettoassente {
+        color: var(--colore-testo-errore);
+        letter-spacing: 2px;
+        font-size: 22px;
+        text-align: start;
+    }
+
+    main .descprogettocontainer {
+        display: flex;
+        flex-direction: column;
+    }
+
+    main .sottodescprogcontainer {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: start;
+        padding: 20px;
+        padding-top: 100px;
+    }
+
+    main .sottodescprogcontainer img {
+        width: 600px;
+    }
+
+    main .gotoprojectcontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        align-items: end;
+        padding-top: 30px;
+    }
+
+    main .gotoprojectcontainer a {
+        background-color: var(--colore-primario);
+        border-radius: 2em;
+        color: var(--colore-testo);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        min-width: 20vw;
+        padding: 10px;
+    }
+
+    main .gotoprojectcontainer a:hover {
+        background-color: var(--colore-primario);
+        color: var(--colore-hover-testo);
+    }
+
+    main .gotoprojectcontainer a:focus {
+        background-color: var(--colore-primario);
+        color: var(--colore-hover-testo);
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px) {
+    .infoprogettobody {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    main {
+        flex: 1;
+        padding: 20px;
+    }
+
+    main .descprogettocontainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    main .descprogettocontainer .testotitoloprogetto {
+        color: var(--colore-hover-testo);
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    main .sottodescprogcontainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    main .sottodescprogcontainer .testodescrizioneprogetto {
+        color: var(--colore-hover-testo);
+        text-align: justify;
+    }
+
+    main .gotoprojectcontainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    main .gotoprojectcontainer a {
+        background-color: var(--colore-primario);
+        border-radius: 2em;
+        color: var(--colore-testo);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        text-align: center;
+        min-width: 20vw;
+    }
+
+    main .gotoprojectcontainer a:hover {
+        background-color: var(--colore-primario);
+        color: var(--colore-hover-testo);
+    }
+
+    main .gotoprojectcontainer a:focus {
+        background-color: var(--colore-primario);
+        color: var(--colore-hover-testo);
+    }
+}
