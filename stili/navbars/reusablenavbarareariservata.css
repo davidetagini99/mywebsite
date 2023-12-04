@@ -6,7 +6,7 @@
 }
 
 :root {
-    --colore-primario: #BE123C; /* bg-rose-700 tailwind css */
+    --colore-primario: #0892d0;
     --colore-testo: white;
     --colore-hover-testo: black;
 }
@@ -16,11 +16,30 @@
         background-color: var(--colore-primario);
     }
 
-    nav .formarticoloblog, .formprogettoportfolio {
-        display: none;
+    nav #dropDownMenuList {
+        background-color: white;
     }
 
-    nav .hidden a {
-        display: none;
+    nav #dropDownMenuList form {
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+        min-width: 100%;
+        padding: 10px;
+        gap: 20px;
+        
+    }
+}
+
+@media screen and (orientation: portrait) and (max-width: 800px) {
+    nav {
+        background-color: var(--colore-primario);
+    }
+
+    nav #mobile-menu .menulistmobile {
+        display: flex;
+        flex-direction: column;
     }
 }

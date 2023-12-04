@@ -12,7 +12,7 @@
     ?>
     <div class="hero-ctas">
       <button type="button" class="btn" id="darkModeBtn">Dark mode</button>
-      <a href="../davidetagini-sitoweb-ufficiale/pagine/area_riservata.php" class="btn" target="_blank">Area riservata</a>
+      <a href="../mywebsite/pagine/area_riservata.php" class="btn" target="_blank">Area riservata</a>
     </div>
   </div>
 </div>
