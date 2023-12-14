@@ -1,21 +1,28 @@
+
+
+<!--
 <div class="container">
-<section>
-    <div class="testodiv">
-        <p>
+    <section>
+        <div class="titoloSection">
+            <p class="text-start">
             <?php
-                echo $sectionText;
-            ?>
-        </p>
-    </div>
-    <div>
-        <img src="<?php echo $imagePath; ?>" alt="Immagine sezione">
-    </div>
-    <div class="skillsbardiv">
-        <div>
-            <?php
-                echo $skillBars;
-            ?>
+                    // Assuming $titolText is user input from the database
+                    echo htmlspecialchars($titleText, ENT_QUOTES, 'UTF-8');
+                ?>
+            </p>
         </div>
-    </div>
-</section>
+        <div class="contenutoSection">
+            <p class="text-justify">
+                <?php
+                    // Assuming $sectionText is user input from the database
+                    echo htmlspecialchars($sectionText, ENT_QUOTES, 'UTF-8');
+                ?>
+            </p>
+            
+            
+                <img src="<?php echo htmlspecialchars($imagePath, ENT_QUOTES, 'UTF-8'); ?>" alt="Immagine sezione">
+            
+        </div>
+    </section>
 </div>
+-->

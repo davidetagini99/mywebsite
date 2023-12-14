@@ -2,7 +2,17 @@
     session_start();
 
     include_once('../funzioni/conndb.php');
+
+    function sanitizeOutput($data) {
+        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    }
+
+    // Function to sanitize input data to prevent SQL injection
+    function sanitizeInput($conn, $data) {
+        return mysqli_real_escape_string($conn, $data);
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,24 +32,44 @@
     <main>
         <div class="descprogettocontainer">
         <?php
-            if(isset($_GET["progetto_id"])) {
-                $queryPrendiTestoInfoProgetto = "SELECT titolo_progetto, descrizione_progetto, immagine_progetto FROM portfolio";
-                $resultQueryPrendiTestoInfoProgetto = mysqli_query($conn, $queryPrendiTestoInfoProgetto);
+            $indiceProgetto = isset($_GET["progetto_id"]) ? sanitizeInput($conn, $_GET["progetto_id"]) : null;
 
-                if($resultQueryPrendiTestoInfoProgetto->num_rows > 0) {
-                    while($row = $resultQueryPrendiTestoInfoProgetto->fetch_assoc()) {
-                        echo '<p class="testotitoloprogetto"> ' . $row["titolo_progetto"] . ' </p>';
+            if($indiceProgetto !== null) {
+                // Using prepared statement to prevent SQL injection
+                $queryPrendiTestoInfoProgetto = "SELECT titolo_progetto, descrizione_progetto, immagine_progetto, link_progetto FROM portfolio WHERE id=?";
+                $stmt = mysqli_prepare($conn, $queryPrendiTestoInfoProgetto);
+                
+                if ($stmt) {
+                    mysqli_stmt_bind_param($stmt, "s", $indiceProgetto);
+                    mysqli_stmt_execute($stmt);
+                    mysqli_stmt_store_result($stmt);
+
+                    if(mysqli_stmt_num_rows($stmt) > 0) {
+                        mysqli_stmt_bind_result($stmt, $titoloProgetto, $descrizioneProgetto, $immagineProgetto, $linkProgetto);
+                        mysqli_stmt_fetch($stmt);
+
+                        $titoloProgetto = sanitizeOutput($titoloProgetto);
+                        $descrizioneProgetto = sanitizeOutput($descrizioneProgetto);
+                        $immagineProgetto = sanitizeOutput($immagineProgetto);
+                        $linkProgetto = sanitizeOutput($linkProgetto);
+
+                        echo '<p class="testotitoloprogetto"> ' . $titoloProgetto . ' </p>';
                         echo '<div class="sottodescprogcontainer">';
-                        echo '<p class="testodescrizioneprogetto"> ' . $row["descrizione_progetto"] . ' </p>';
-                        echo '<img src=" ' . $row["immagine_progetto"] . ' " />';
+                        echo '<textarea readonly cols="30" rows="10" class="form-control"> ' . $descrizioneProgetto . ' </textarea>';
+                        echo '<img src=" ' . $immagineProgetto . ' " />';
                         echo '</div>';
                         echo '<div class="gotoprojectcontainer">';
-                        echo '<a href="" class="btn">Visita progetto</a>';
+                        echo '<a href=" ' . $linkProgetto . ' " class="text-center text-uppercase font-semibold py-2 px-4 border border-gray-400 rounded shadow">Visita progetto</a>';
                         echo '</div>';
                     }
+                    else {
+                        echo '<p class="testoinfoprogettoassente">Non è stato caricato ancora nessun progetto</p>';
+                    }
+
+                    mysqli_stmt_close($stmt);
                 }
                 else {
-                    echo '<p class="testoinfoprogettoassente">Non è stato caricato ancora nessun progetto</p>';
+                    echo '<p class="testoinfoprogettoassente">Errore nella query SQL</p>';
                 }
             }
             else {

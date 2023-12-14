@@ -1,17 +1,2 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@media screen and (orientation: landscape) and (min-width: 400px) {
-    .indexpagebody {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-    
-    main {
-        flex: 1;
-    }
-}
+/* Commenting existing code in ../mywebsite/stili/index.css */
+/* End of existing code in ../mywebsite/stili/index.css */

@@ -2,6 +2,10 @@
     session_start();
 
     include_once('../funzioni/conndb.php');
+
+    function sanitizeOutput($data) {
+        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

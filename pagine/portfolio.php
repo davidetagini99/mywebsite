@@ -2,6 +2,10 @@
     session_start();
 
     include_once('../funzioni/conndb.php');
+
+    function sanitizeOutput($data) {
+        return htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,17 +31,20 @@
     <main>
         <?php
             $queryPrendiProgettiPortfolio = "SELECT id, titolo_progetto, immagine_progetto, link_progetto FROM portfolio";
-            $resultQueryPrendiProgettiPortfolio = mysqli_query($conn, $queryPrendiProgettiPortfolio);
+            $stmt = $conn->prepare($queryPrendiProgettiPortfolio);
+            $stmt->execute();
+
+            $resultQueryPrendiProgettiPortfolio = $stmt->get_result();
 
             if($resultQueryPrendiProgettiPortfolio->num_rows > 0) {
                 while($row = $resultQueryPrendiProgettiPortfolio->fetch_assoc()) {
                    echo '<div class="card">';
-                   echo '<div class="card-body">';
-                   echo '<h5 class="card-title">' . $row["titolo_progetto"] . '</h5>'; // perché non legge il tag h5?
+                   echo '<div class="card-body" style="background-color: #0892d0;">';
+                   echo '<h5 class="card-title text-start text-white" style="font-size: 22px; letter-spacing: 1px;">' . sanitizeOutput($row["titolo_progetto"]) . '</h5>';
                    echo '</div>';
-                   echo '<img src=" ' . $row["immagine_progetto"] . ' " alt="Immagine del progetto">';
-                   echo '<div class="card-footer">';
-                   echo '<a class="btn" href="infoprogetto.php?progetto_id=' . $row["id"] . '" target="_blank">Leggi info</a>';
+                   echo '<img src="' . sanitizeOutput($row["immagine_progetto"]) . '" alt="Immagine del progetto">';
+                   echo '<div class="card-footer" style="background-color: #0892d0;">';
+                   echo '<a class="bg-white hover:bg-gray-100 text-black text-center text-uppercase py-2 px-4 border border-gray-400 rounded shadow" href="infoprogetto.php?progetto_id=' . sanitizeOutput($row["id"]) . '" target="_blank">Leggi info</a>';
                    echo '</div>';
                    echo '</div>';
                 }
@@ -53,13 +60,3 @@
     <script src="../script_js/gestione_barra_navigazione.js"></script>
 </body>
 </html>
-
-<!--
-     echo '<div class="boxprogetto">';
-                    echo '<p> ' . $row["titolo_progetto"] . ' </p>';
-                    echo '<img src=" ' . $row["immagine_progetto"] . ' " alt="Ciao" />';
-                    echo '<div class="boxprogetto-footer">';
-                    echo '<a class="btn" href="infoprogetto.php?progetto_id=' . $row["id"] . '" target="_blank">Leggi info</a>';
-                    echo '</div>';
-                    echo '</div>';
--->
