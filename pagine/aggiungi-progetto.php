@@ -67,7 +67,7 @@
     <main class="md:h-screen md:flex md:flex-col md:justify-center md:align-middle flex flex-col justify-center align-middle">
 
 
-<form class="max-w-sm mx-auto md:flex md:flex-col md:justify-center md:align-middle md:p-5 md:w-8/12 flex flex-col justify-center align-middle border-4 border-red-500 p-5" action="aggiungi-progetto.php" method="post" autocomplete="off" enctype="multipart/form-data">
+<form class="max-w-sm mx-auto md:flex md:flex-col md:justify-center md:align-middle md:p-5 md:w-8/12 flex flex-col justify-center align-middle border-4 border-sky-400 p-5" action="aggiungi-progetto.php" method="post" autocomplete="off" enctype="multipart/form-data">
   <div class="mb-5">
     <label for="titoloprogetto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titolo del progetto</label>
     <input type="text" name="titoloprogetto" id="titoloProgetto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -88,7 +88,7 @@
     <label for="immagineprogetto">Immagine del progetto</label>
     <input name="immagineprogetto" id="immagineProgetto" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">
   </div>
-  <button type="submit" name="btnpubblicaprogetto" class="bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-white uppercase">Carica progetto</button>
+  <button type="submit" name="btnpubblicaprogetto" class="bg-sky-400 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 text-white uppercase">Carica progetto</button>
 </form>
     </main>
 </body>

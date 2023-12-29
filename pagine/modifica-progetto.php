@@ -111,7 +111,7 @@
                         echo '<label for="immagineprogetto">Immagine del progetto</label>';
                         echo '<input name="immagineprogetto" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" aria-describedby="user_avatar_help" id="user_avatar" type="file">';
                         echo '<div class="md:flex md:flex-row md:justify-end md:align-middle flex flex-row justify-center align-middle w-full">';
-                        echo '<button type="submit" name="btnmodificaprogetto" class="bg-red-500 p-3 md:w-2/5 text-white uppercase rounded-lg w-full">Modifica</button>';
+                        echo '<button type="submit" name="btnmodificaprogetto" class="bg-sky-400 p-3 text-white uppercase rounded-lg w-full">Modifica</button>';
                         echo '</div>';
                         echo '</form>';
                     }

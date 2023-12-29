@@ -32,7 +32,7 @@ function sanitizeOutput($data) {
     <title>Davide Tagini</title>
 </head>
 
-<body class="indexpagebody">
+<body>
     <?php
         require("componenti/navbar.php");
     ?>

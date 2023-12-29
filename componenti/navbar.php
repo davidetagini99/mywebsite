@@ -1,142 +1,30 @@
-<nav class="bg-red-500 border-b-4 border-red-500 fixed w-full">
-  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
-    <div class="relative flex h-16 items-center justify-between">
-      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
-        <!-- Mobile menu button-->
-        <button id="burger-menu-button" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-white bg-red-500 hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-controls="mobile-menu" aria-expanded="false">
-          <span class="absolute -inset-0.5"></span>
-          <span class="sr-only">Open main menu</span>
-          <!--
-            Icon when menu is closed.
+<nav class="bg-sky-400 md:p-5 md:flex md:flex-row md:justify-end md:align-middle p-2">
 
-            Menu open: "hidden", Menu closed: "block"
-          -->
-          <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-          </svg>
-          <!--
-            Icon when menu is open.
 
-            Menu open: "block", Menu closed: "hidden"
-          -->
-          <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-        <div class="flex flex-shrink-0 items-center">
-          <img class="h-8 w-auto hidden" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company">
-        </div>
-        <div class="hidden sm:ml-6 sm:block">
-          <div class="flex space-x-4">
-            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <?php
-                  $queryPrendiLink = "SELECT * FROM linknav";
-                  $resultQueryPrendiLink = mysqli_query($conn, $queryPrendiLink);
-                  
-                  if ($resultQueryPrendiLink && $resultQueryPrendiLink->num_rows > 0) {
-                      while ($row = mysqli_fetch_assoc($resultQueryPrendiLink)) {
-                          $destLink = htmlspecialchars($row["dest_link"], ENT_QUOTES, 'UTF-8');
-                          $voceLink = htmlspecialchars($row["voce_link"], ENT_QUOTES, 'UTF-8');
-                  
-                          // Modify the link to include the section ID
-                          echo '<a class="text-white hover:bg-white hover:text-red-500 focus:bg-white focus:text-red-500 focus:border-2 focus:border-white rounded-md px-3 py-2 text-sm font-medium uppercase" href="' . $destLink . '">' . $voceLink . '</a>';
-                      }
-                  } 
-                  else {
-                      echo '<p class="text-white text-uppercase">Carica i link</p>';
-                  }
-                ?>
-                <div class="relative inline-block text-left">
-  <div>
-    <button type="button" class="hidden w-full justify-center gap-x-1.5 rounded-md bg-transparent focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 px-3 py-2 text-sm font-semibold text-white border-2 border-white shadow-sm ring-1 ring-inset ring-transparent uppercase hover:bg-white hover:text-red-500" id="drop-menu-button" aria-expanded="true" aria-haspopup="true">
-      Qualcosa in più
-      <svg class="-mr-1 h-5 w-5 text-white hover:text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+<!-- drawer init and toggle -->
+<div class="text-center md:hidden flex flex-row justify-end align-middle">
+   <button class="p-3 rounded-lg text-white text-center" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example" aria-controls="drawer-example">
+      <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
       </svg>
-    </button>
-  </div>
-
-  <!--
-    Dropdown menu, show/hide based on menu state.
-
-    Entering: "transition ease-out duration-100"
-      From: "transform opacity-0 scale-95"
-      To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-      From: "transform opacity-100 scale-100"
-      To: "transform opacity-0 scale-95"
-  -->
-  <div id="drop-down-menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none list-none p-3" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-    <div class="py-1" role="none">
-      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <?php
-        $queryPrendiLinkDropdown = "SELECT * FROM dropdownmenu";
-        $resultQueryPrendiLinkDropdown = mysqli_query($conn, $queryPrendiLinkDropdown);
-
-        if($resultQueryPrendiLinkDropdown->num_rows > 0) {
-          while($row = $resultQueryPrendiLinkDropdown->fetch_assoc()) {
-              $destLinkDropdown = htmlspecialchars($row["dest_link_dropdown"], ENT_QUOTES, 'UTF-8');
-              $voceLinkDropdown = htmlspecialchars($row["voce_link_dropdown"], ENT_QUOTES, 'UTF-8');
-
-              echo '<li>';
-              echo '<a href=" ' . $destLinkDropdown . '"> ' . $voceLinkDropdown . ' </a>';
-              echo '</li>';
-          }
-        }
-      ?>
-    </div>
-  </div>
+   </button>
 </div>
 
-          </div>
-        </div>
-      </div>
-      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-        <button id="notification-button" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-          <span class="absolute -inset-1.5"></span>
-          <span class="sr-only">View notifications</span>
-          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-          </svg>
-        </button>
-
-        <!-- Profile dropdown -->
-        <div class="relative ml-3">
-          <div>
-            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-              <span class="absolute -inset-1.5"></span>
-              <span class="sr-only">Open user menu</span>
-              <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-            </button>
-          </div>
-
-          <!--
-            Dropdown menu, show/hide based on menu state.
-
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-          <div id="user-menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            <!-- Active: "bg-gray-100", Not Active: "" -->
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">Your Profile</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Mobile menu, show/hide based on menu state. -->
-  <div class="sm:hidden" id="mobile-menu">
-    <div class="space-y-1 px-2 pb-3 pt-2 bg-red-500 flex flex-col justify-start align-middle text-center uppercase min-h-screen">
-      <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+<!-- drawer component -->
+<div id="drawer-example" class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-sky-400 w-full dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label">
+   <h5 id="drawer-label" class="hidden items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>Info</h5>
+   <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example" class="text-white bg-transparent rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white" >
+      <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+      </svg>
+      <span class="sr-only">Close menu</span>
+   </button>
+      
+   <p class="mb-6 text-sm text-gray-500 dark:text-gray-400 hidden">Supercharge your hiring by taking advantage of our <a href="#" class="text-blue-600 underline dark:text-blue-500 hover:no-underline">limited-time sale</a> for Flowbite Docs + Job Board. Unlimited access to over 190K top-ranked candidates and the #1 design job board.</p>
+   <div class=" gap-4 h-full">
+      <div class="h-full flex flex-col p-2 gap-2 bg-sky-400 justify-center align-middle w-full">
       <?php
                   $queryPrendiLink = "SELECT * FROM linknav";
                   $resultQueryPrendiLink = mysqli_query($conn, $queryPrendiLink);
@@ -147,60 +35,38 @@
                           $voceLink = htmlspecialchars($row["voce_link"], ENT_QUOTES, 'UTF-8');
                   
                           // Modify the link to include the section ID
-                          echo '<a class="text-white hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium" href="' . $destLink . '">' . $voceLink . '</a>';
+                          echo '<a class="text-center border-b-2 border-white text-white p-2 uppercase" href="' . $destLink . '">' . $voceLink . '</a>';
                       }
                   } 
                   else {
                       echo '<p class="text-white text-uppercase">Carica i link</p>';
                   }
                 ?>
-                <div class="relative inline-block text-left">
-  <div class="flex flex-row justify-center align-middle">
-    <button id="drop-down-mobile-button" type="button" class="hidden w-4/5 justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 uppercase" id="menu-button" aria-expanded="true" aria-haspopup="true">
-      Qualcosa in più
-      <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-      </svg>
-    </button>
-  </div>
-
-  <!--
-    Dropdown menu, show/hide based on menu state.
-
-    Entering: "transition ease-out duration-100"
-      From: "transform opacity-0 scale-95"
-      To: "transform opacity-100 scale-100"
-    Leaving: "transition ease-in duration-75"
-      From: "transform opacity-100 scale-100"
-      To: "transform opacity-0 scale-95"
-  -->
-  <div id="drop-down-mobile-menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-    <div class="py-1" role="none">
-      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-      <?php // dropdown
-            $queryPrendiLinkDropdown = "SELECT * FROM dropdownmenu";
-            $resultQueryPrendiLinkDropdown = mysqli_query($conn, $queryPrendiLinkDropdown);
-
-            if ($resultQueryPrendiLinkDropdown && $resultQueryPrendiLinkDropdown->num_rows > 0) {
-              echo '<ul>';
-              while ($row = mysqli_fetch_assoc($resultQueryPrendiLinkDropdown)) {
-                $destLinkDropdown = htmlspecialchars($row["dest_link_dropdown"], ENT_QUOTES, 'UTF-8');
-                $voceLinkDropdown = htmlspecialchars($row["voce_link_dropdown"], ENT_QUOTES, 'UTF-8');
-                
-                echo '<li>';
-                echo '<a class="text-black text-start" href="' . $destLinkDropdown . '">' . $voceLinkDropdown . '</a>';
-                echo '</li>';
-                
-              }
-              echo '</ul>';
-            } 
-            else {
-              echo '<p class="text-white text-uppercase">Carica il dropdown</p>';
-            }
-            ?>
-    </div>
-  </div>
+      </div>
+    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+  </svg></a>
+   </div>
 </div>
-    </div>
-  </div>
+
+  <ul class="hidden md:flex">
+    <li>
+    <?php
+                  $queryPrendiLink = "SELECT * FROM linknav";
+                  $resultQueryPrendiLink = mysqli_query($conn, $queryPrendiLink);
+                  
+                  if ($resultQueryPrendiLink && $resultQueryPrendiLink->num_rows > 0) {
+                      while ($row = mysqli_fetch_assoc($resultQueryPrendiLink)) {
+                          $destLink = htmlspecialchars($row["dest_link"], ENT_QUOTES, 'UTF-8');
+                          $voceLink = htmlspecialchars($row["voce_link"], ENT_QUOTES, 'UTF-8');
+                  
+                          // Modify the link to include the section ID
+                          echo '<a class="text-white hover:bg-white hover:text-sky-500 focus:bg-white focus:text-sky-500 focus:border-2 focus:border-white rounded-md px-3 py-2 text-sm font-medium uppercase" href="' . $destLink . '">' . $voceLink . '</a>';
+                      }
+                  } 
+                  else {
+                      echo '<p class="text-white text-uppercase">Carica i link</p>';
+                  }
+                ?>
+    </li>
+  </ul>
 </nav>

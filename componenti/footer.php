@@ -1,11 +1,11 @@
-<footer class="bg-red-500 shadow dark:bg-gray-900">
+<footer class="bg-sky-400 shadow dark:bg-gray-900">
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
-        <div class="sm:flex sm:items-center sm:justify-between">
+        <div class="sm:flex sm:items-center sm:justify-between flex flex-row justify-center align-middle">
             <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
                 <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 hidden" alt="Flowbite Logo" />
                 <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white hidden">Flowbite</span>
             </a>
-            <ul class="flex flex-wrap justify-center align-middle items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+            <ul class="flex flex-row justify-center align-middle md:flex md:flex-row md:justify-center md:align-middle">
                 <li>
                 <?php
                   $queryPrendiLink = "SELECT * FROM linknav";
@@ -17,7 +17,7 @@
                           $voceLink = htmlspecialchars($row["voce_link"], ENT_QUOTES, 'UTF-8');
                   
                           // Modify the link to include the section ID
-                          echo '<a class="hover:underline me-4 md:me-6 text-white" href="' . $destLink . '">' . $voceLink . '</a>';
+                          echo '<a class="hover:underline me-4 md:me-6 text-white text-sm" href="' . $destLink . '">' . $voceLink . '</a>';
                       }
                   } 
                   else {

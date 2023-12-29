@@ -23,8 +23,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
     <title>Davide Tagini | info progetto</title>
 </head>
-<body class="h-screen flex flex-col">
-    <main class="flex-grow">
+<body>
+    <main>
         <?php
             $indiceProgetto = isset($_GET["progetto_id"]) ? sanitizeInput($conn, $_GET["progetto_id"]) : null;
 
@@ -38,15 +38,17 @@
 
                 if($resultQueryPrendiTestoInfoProgetto->num_rows > 0) {
                     while($row = $resultQueryPrendiTestoInfoProgetto->fetch_assoc()) {
-                        echo '<div class="md:flex md:flex-col md:justify-start md:align-top md:p-5">';
+                        echo '<div class="md:flex md:flex-col md:justify-start md:align-middle md:p-5 md:h-screen p-3">';
+                        echo '<div class="md:flex md:flex-row md:justify-start md:align-middle">';
                         echo '<p class="md:text-start text-black uppercase text-center p-3"> ' . $row["titolo_progetto"] . ' </p>';
-                        echo '<div class="md:h-fit md:p-5 md:flex md:flex-row md:justify-between md:align-middle h-fit flex flex-col justify-start align-middle gap-5 p-3 mx-auto">';
-                        echo '<p> ' . $row["descrizione_progetto"] . ' </p>';
-                        echo '<img class="md:w-2/4 md:h-3/5" src=" ' . $row["immagine_progetto"] . ' ">';
+                        echo '</div>';
+                        echo '<div class="md:flex md:flex-row md:justify-between md:align-middle md:h-4/5 md:gap-0 md:py-6 flex flex-col justify-between align-middle gap-4">';
+                        echo '<p class="text-justify md:w-2/5"> ' . $row["descrizione_progetto"] . ' </p>';
+                        echo '<img class="md:w-2/4 md:h-5/6 border-4 border-sky-400 h-fit object-cover" src=" ' . $row["immagine_progetto"] . ' ">';
                         echo '</div>';
                         // You can display other project information here
-                        echo '<div class="md:flex md:flex-row md:justify-center md:align-middle flex flex-row justify-center align-middle p-3">';
-                        echo '<a href=" ' . $row["link_progetto"] . ' " class="bg-red-500 p-3 rounded-lg md:w-2/6 text-center text-white uppercase w-full">Apri progetto</a>';
+                        echo '<div class="md:p-0 md:flex md:flex-row md:justify-center md:align-middle md:py-0 p-2 flex flex-row justify-center align-middle py-4">';
+                        echo '<a href=" ' . $row["link_progetto"] . ' " class="bg-sky-400 p-3 rounded-lg md:w-1/4 text-center text-white uppercase w-2/4">Apri progetto</a>';
                         echo '</div>';
                         echo '</div>';
                     }
